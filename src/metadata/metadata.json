@@ -1,0 +1,2256 @@
+{
+  "package": "AmazonSES",
+  "tagline": "Amazon Simple Email Service API",
+  "description": "Amazon SES is an email platform that provides an easy, cost-effective way for you to send and receive email using your own email addresses and domains.",
+  "image": "http://logo.clearbit.com/amazon.com",
+  "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-AmazonSES-package",
+  "keywords": [
+    "API",
+    "AWS",
+    "mail",
+    "mailing"
+  ],
+  "accounts": {
+    "domain": "amazon.com",
+    "credentials": [
+      "apiKey",
+      "apiSecret"
+    ]
+  },
+  "blocks": [
+    {
+      "name": "createConfigurationSet",
+      "description": "Creates a configuration set.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "configurationName",
+          "type": "String",
+          "info": "The name of the configuration set. The name must: Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_), or dashes (-). Contain less than 64 characters.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createConfigurationSetEventDestination",
+      "description": "Creates a configuration set event destination. An event destination is the AWS service to which Amazon SES publishes the email sending events associated with a configuration set.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "configurationName",
+          "type": "String",
+          "info": "The name of the configuration set to which to apply the event destination.",
+          "required": true
+        },
+        {
+          "name": "destinationName",
+          "type": "String",
+          "info": "The name of the event destination. The name must: Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_), or dashes (-). Contain less than 64 characters.",
+          "required": true
+        },
+        {
+          "name": "matchingEventTypes",
+          "type": "JSON",
+          "info": "Array of strings. The type of email sending events to publish to the event destination. Valid Values: send; reject; bounce; complaint; delivery",
+          "required": true
+        },
+        {
+          "name": "enabled",
+          "type": "String",
+          "info": "Sets whether Amazon SES publishes events to this destination when you send an email with the associated configuration set. Set to true to enable publishing to this destination; set to false to prevent publishing to this destination. The default value is false.",
+          "required": false
+        },
+        {
+          "name": "cloudWatchDestination",
+          "type": "JSON",
+          "info": "An object that contains the names, default values, and sources of the dimensions associated with an Amazon CloudWatch event destination. See README for more details.",
+          "required": false
+        },
+        {
+          "name": "deliveryStreamARN",
+          "type": "String",
+          "info": "The ARN of the Amazon Kinesis Firehose stream to which to publish email sending events.",
+          "required": false
+        },
+        {
+          "name": "IAMRoleARN",
+          "type": "String",
+          "info": "The ARN of the IAM role under which Amazon SES publishes email sending events to the Amazon Kinesis Firehose stream.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createReceiptFilter",
+      "description": "Creates a new IP address filter.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "The name of the IP address filter. The name must: Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores (_), or dashes (-). Start and end with a letter or number. Contain less than 64 characters.",
+          "required": true
+        },
+        {
+          "name": "CIDR",
+          "type": "String",
+          "info": "A single IP address or a range of IP addresses that you want to block or allow, specified in Classless Inter-Domain Routing (CIDR) notation. An example of a single email address is 10.0.0.1. An example of a range of IP addresses is 10.0.0.1/24. For more information about CIDR notation, see RFC 2317.",
+          "required": true
+        },
+        {
+          "name": "policy",
+          "type": "String",
+          "info": "Indicates whether to block or allow incoming mail from the specified IP addresses. Valid Values: Block; Allow",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createReceiptRuleSet",
+      "description": "Creates an empty receipt rule set.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "ruleSetName",
+          "type": "String",
+          "info": "The name of the rule set to create. The name must: Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores (_), or dashes (-). Start and end with a letter or number. Contain less than 64 characters.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "cloneReceiptRuleSet",
+      "description": "Creates a receipt rule set by cloning an existing one. All receipt rules and configurations are copied to the new receipt rule set and are completely independent of the source rule set.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "originalRuleSetName",
+          "type": "String",
+          "info": "The name of the rule set to clone.",
+          "required": true
+        },
+        {
+          "name": "ruleSetName",
+          "type": "String",
+          "info": "The name of the rule set to create. The name must: Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores (_), or dashes (-). Start and end with a letter or number. Contain less than 64 characters.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createReceiptRule",
+      "description": "Creates a receipt rule.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "ruleSetName",
+          "type": "String",
+          "info": "The name of the rule set to which to add the rule.",
+          "required": true
+        },
+        {
+          "name": "ruleName",
+          "type": "String",
+          "info": "The name of the receipt rule. The name must: Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores (_), or dashes (-). Start and end with a letter or number. Contain less than 64 characters.",
+          "required": true
+        },
+        {
+          "name": "after",
+          "type": "String",
+          "info": "The name of an existing rule after which the new rule will be placed. If this parameter is null, the new rule will be inserted at the beginning of the rule list.",
+          "required": false
+        },
+        {
+          "name": "actions",
+          "type": "JSON",
+          "info": "An ordered list of actions to perform on messages that match at least one of the recipient email addresses or domains specified in the receipt rule. See README for more details.",
+          "required": false
+        },
+        {
+          "name": "enabled",
+          "type": "String",
+          "info": "If true, the receipt rule is active. The default value is false.",
+          "required": false
+        },
+        {
+          "name": "scanEnabled",
+          "type": "String",
+          "info": "If true, then messages to which this receipt rule applies are scanned for spam and viruses. The default value is false.",
+          "required": false
+        },
+        {
+          "name": "tlsPolicy",
+          "type": "String",
+          "info": "Specifies whether Amazon SES should require that incoming email is delivered over a connection encrypted with Transport Layer Security (TLS). If this parameter is set to Require, Amazon SES will bounce emails that are not received over TLS. The default is Optional. Valid Values: Require; Optional",
+          "required": false
+        },
+        {
+          "name": "recipients",
+          "type": "JSON",
+          "info": "Array of strings. The recipient domains and email addresses to which the receipt rule applies. If this field is not specified, this rule will match all recipients under all verified domains.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "describeActiveReceiptRuleSet",
+      "description": "Returns the metadata and receipt rules for the receipt rule set that is currently active.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "describeConfigurationSet",
+      "description": "Returns the details of the specified configuration set.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "configurationSetName",
+          "type": "String",
+          "info": "The name of the configuration set to describe.",
+          "required": true
+        },
+        {
+          "name": "attributeNames",
+          "type": "JSON",
+          "info": "Array os strings. A list of configuration set attributes to return. Valid Values: eventDestinations",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "describeReceiptRule",
+      "description": "Returns the details of the specified receipt rule.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "ruleName",
+          "type": "String",
+          "info": "The name of the receipt rule.",
+          "required": true
+        },
+        {
+          "name": "ruleSetName",
+          "type": "String",
+          "info": "The name of the receipt rule set to which the receipt rule belongs.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "describeReceiptRuleSet",
+      "description": "Returns the details of the specified receipt rule set.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "ruleSetName",
+          "type": "String",
+          "info": "The name of the receipt rule set to describe.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getIdentityDkimAttributes",
+      "description": "Returns the current status of Easy DKIM signing for an entity. For domain name identities, this action also returns the DKIM tokens that are required for Easy DKIM signing, and whether Amazon SES has successfully verified that these tokens have been published.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "identities",
+          "type": "JSON",
+          "info": "Array of strings. A list of one or more verified identities - email addresses, domains, or both.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getIdentityMailFromDomainAttributes",
+      "description": "Returns the custom MAIL FROM attributes for a list of identities (email addresses and/or domains).",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "identities",
+          "type": "JSON",
+          "info": "Array of strings. A list of one or more identities.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getIdentityNotificationAttributes",
+      "description": "Given a list of verified identities (email addresses and/or domains), returns a structure describing identity notification attributes.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "identities",
+          "type": "JSON",
+          "info": "Array of strings. A list of one or more identities. You can specify an identity by using its name or by using its Amazon Resource Name (ARN). Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getIdentityPolicies",
+      "description": "Returns the requested sending authorization policies for the given identity (an email address or a domain). The policies are returned as a map of policy names to policy contents. You can retrieve a maximum of 20 policies at a time.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "identity",
+          "type": "String",
+          "info": "The identity for which the policies will be retrieved. You can specify an identity by using its name or by using its Amazon Resource Name (ARN). Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.",
+          "required": true
+        },
+        {
+          "name": "policyNames",
+          "type": "JSON",
+          "info": "Array of strings. A list of the names of policies to be retrieved. You can retrieve a maximum of 20 policies at a time. If you do not know the names of the policies that are attached to the identity, you can use ListIdentityPolicies.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getIdentityVerificationAttributes",
+      "description": "Given a list of identities (email addresses and/or domains), returns the verification status and (for domain identities) the verification token for each identity.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "identities",
+          "type": "JSON",
+          "info": "Array of strings. A list of identities. For more details see README.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSendQuota",
+      "description": "Returns the user's current sending limits.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSendStatistics",
+      "description": "Returns the user's sending statistics. The result is a list of data points, representing the last two weeks of sending activity. Each data point in the list contains statistics for a 15-minute interval.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "listConfigurationSets",
+      "description": "Lists the configuration sets associated with your AWS account.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "maxItems",
+          "type": "String",
+          "info": "The number of configuration sets to return.",
+          "required": false
+        },
+        {
+          "name": "nextToken",
+          "type": "String",
+          "info": "A token returned from a previous call to ListConfigurationSets to indicate the position of the configuration set in the configuration set list.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "listIdentities",
+      "description": "Returns a list containing all of the identities (email addresses and domains) for your AWS account, regardless of verification status.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "identityType",
+          "type": "String",
+          "info": "The type of the identities to list. Possible values are \"EmailAddress\" and \"Domain\". If this parameter is omitted, then all identities will be listed. Valid Values: EmailAddress; Domain",
+          "required": false
+        },
+        {
+          "name": "maxItems",
+          "type": "String",
+          "info": "The number of configuration sets to return.",
+          "required": false
+        },
+        {
+          "name": "nextToken",
+          "type": "String",
+          "info": "A token returned from a previous call to ListConfigurationSets to indicate the position of the configuration set in the configuration set list.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "listIdentityPolicies",
+      "description": "Returns a list of sending authorization policies that are attached to the given identity (an email address or a domain). ",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "identity",
+          "type": "String",
+          "info": "The identity that is associated with the policy for which the policies will be listed. You can specify an identity by using its name or by using its Amazon Resource Name (ARN). Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "listReceiptFilters",
+      "description": "Lists the IP address filters associated with your AWS account.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "listReceiptRuleSets",
+      "description": "Lists the receipt rule sets that exist under your AWS account. If there are additional receipt rule sets to be retrieved, you will receive a NextToken that you can provide to the next call to ListReceiptRuleSets to retrieve the additional entries.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "NextToken",
+          "type": "String",
+          "info": "A token returned from a previous call to ListReceiptRuleSets to indicate the position in the receipt rule set list.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "putIdentityPolicy",
+      "description": "Adds or updates a sending authorization policy for the specified identity (an email address or a domain).",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "identity",
+          "type": "String",
+          "info": "The identity to which the policy will apply. You can specify an identity by using its name or by using its Amazon Resource Name (ARN). Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.",
+          "required": true
+        },
+        {
+          "name": "policy",
+          "type": "JSON",
+          "info": "The text of the policy in JSON format. The policy cannot exceed 4 KB. See README for more details.",
+          "required": true
+        },
+        {
+          "name": "policyName",
+          "type": "String",
+          "info": "The name of the policy.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "reorderReceiptRuleSet",
+      "description": "Reorders the receipt rules within a receipt rule set.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "ruleNames",
+          "type": "JSON",
+          "info": "Array of strings. A list of the specified receipt rule set's receipt rules in the order that you want to put them. See README for more details.",
+          "required": true
+        },
+        {
+          "name": "ruleSetName",
+          "type": "String",
+          "info": "The name of the receipt rule set to reorder.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "sendBounce",
+      "description": "Generates and sends a bounce message to the sender of an email you received through Amazon SES. You can only use this API on an email up to 24 hours after you receive it.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "bounceSender",
+          "type": "String",
+          "info": "The address to use in the \"From\" header of the bounce message. This must be an identity that you have verified with Amazon SES.",
+          "required": true
+        },
+        {
+          "name": "originalMessageId",
+          "type": "String",
+          "info": "The message ID of the message to be bounced.",
+          "required": true
+        },
+        {
+          "name": "bouncedRecipientInfoList",
+          "type": "JSON",
+          "info": "A list of recipients of the bounced message, including the information required to create the Delivery Status Notifications (DSNs) for the recipients. You must specify at least one BouncedRecipientInfo in the list. See README for more details.",
+          "required": true
+        },
+        {
+          "name": "bounceSenderArn",
+          "type": "String",
+          "info": "This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to use the address in the \"From\" header of the bounce. ",
+          "required": false
+        },
+        {
+          "name": "explanation",
+          "type": "String",
+          "info": "Human-readable text for the bounce message to explain the failure. If not specified, the text will be auto-generated based on the bounced recipient information.",
+          "required": false
+        },
+        {
+          "name": "messageDsn",
+          "type": "JSON",
+          "info": "Message-related DSN fields. If not specified, Amazon SES will choose the values. See README for more details.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "sendMail",
+      "description": "Composes an email message based on input data, and then immediately queues the message for sending.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "destination",
+          "type": "JSON",
+          "info": "The destination for this email, composed of To:, CC:, and BCC: fields. See README for more details.",
+          "required": true
+        },
+        {
+          "name": "message",
+          "type": "JSON",
+          "info": "The message to be sent. See README for more details.",
+          "required": true
+        },
+        {
+          "name": "fromEmail",
+          "type": "String",
+          "info": "The email address that is sending the email. This email address must be either individually verified with Amazon SES, or from a domain that has been verified with Amazon SES.",
+          "required": true
+        },
+        {
+          "name": "configurationSetName",
+          "type": "String",
+          "info": "The name of the configuration set to use when you send an email using SendEmail.",
+          "required": false
+        },
+        {
+          "name": "replyToAddresses",
+          "type": "JSON",
+          "info": "Array of strings. The reply-to email address(es) for the message. If the recipient replies to the message, each reply-to address will receive the reply. See README for more details.",
+          "required": false
+        },
+        {
+          "name": "returnPath",
+          "type": "String",
+          "info": "The email address to which bounces and complaints are to be forwarded when feedback forwarding is enabled.",
+          "required": false
+        },
+        {
+          "name": "returnPathArn",
+          "type": "String",
+          "info": "This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to use the email address specified in the ReturnPath parameter.",
+          "required": false
+        },
+        {
+          "name": "sourceArn",
+          "type": "String",
+          "info": "This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to send for the email address specified in the Source parameter. For example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com) attaches a policy to it that authorizes you to send from user@example.com, then you would specify the SourceArn to be arn:aws:ses:us-east-1:123456789012:identity/example.com, and the Source to be user@example.com.",
+          "required": false
+        },
+        {
+          "name": "tags",
+          "type": "JSON",
+          "info": "A list of tags, in the form of name/value pairs, to apply to an email that you send using SendEmail. Tags correspond to characteristics of the email that you define, so that you can publish email sending events. See README for more details.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "sendPlainMail",
+      "description": "Composes an email plain message based on input data, and then immediately queues the message for sending.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "toEmail",
+          "type": "String",
+          "info": "The destination for this email.",
+          "required": true
+        },
+        {
+          "name": "subject",
+          "type": "String",
+          "info": "The subject of the email.",
+          "required": true
+        },
+        {
+          "name": "message",
+          "type": "String",
+          "info": "The message of the email.",
+          "required": true
+        },
+        {
+          "name": "fromEmail",
+          "type": "String",
+          "info": "The email address that is sending the email. This email address must be either individually verified with Amazon SES, or from a domain that has been verified with Amazon SES.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "sendRawMail",
+      "description": "Sends an email message, with header and content specified by the client. The SendRawEmail action is useful for sending multipart MIME emails. The raw text of the message must comply with Internet email standards; otherwise, the message cannot be sent.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "rawMessage",
+          "type": "JSON",
+          "info": "The raw text of the message. See README for more details.",
+          "required": true
+        },
+        {
+          "name": "configurationSetName",
+          "type": "String",
+          "info": "The name of the configuration set to use when you send an email using SendRawEmail.",
+          "required": false
+        },
+        {
+          "name": "destinations",
+          "type": "JSON",
+          "info": "A list of destinations for the message, consisting of To:, CC:, and BCC: addresses. See README for more details.",
+          "required": false
+        },
+        {
+          "name": "fromArn",
+          "type": "String",
+          "info": "This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to specify a particular \"From\" address in the header of the raw email.",
+          "required": false
+        },
+        {
+          "name": "returnPathArn",
+          "type": "String",
+          "info": "This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to use the email address specified in the ReturnPath parameter. For example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com) attaches a policy to it that authorizes you to use feedback@example.com, then you would specify the ReturnPathArn to be arn:aws:ses:us-east-1:123456789012:identity/example.com, and the ReturnPath to be feedback@example.com.",
+          "required": false
+        },
+        {
+          "name": "source",
+          "type": "String",
+          "info": "The identity's email address. If you do not provide a value for this parameter, you must specify a \"From\" address in the raw text of the message. (You can also specify both.)",
+          "required": false
+        },
+        {
+          "name": "sourceArn",
+          "type": "String",
+          "info": "This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to send for the email address specified in the Source parameter. For example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com) attaches a policy to it that authorizes you to send from user@example.com, then you would specify the SourceArn to be arn:aws:ses:us-east-1:123456789012:identity/example.com, and the Source to be user@example.com.",
+          "required": false
+        },
+        {
+          "name": "tags",
+          "type": "JSON",
+          "info": "A list of tags, in the form of name/value pairs, to apply to an email that you send using SendRawEmail. Tags correspond to characteristics of the email that you define, so that you can publish email sending events. See README for more details.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "setActiveReceiptRuleSet",
+      "description": "Sets the specified receipt rule set as the active receipt rule set.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "ruleSetName",
+          "type": "String",
+          "info": "The name of the receipt rule set to make active. Setting this value to null disables all email receiving.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "setIdentityDkimEnabled",
+      "description": "Enables or disables Easy DKIM signing of email",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "dkimEnabled",
+          "type": "String",
+          "info": "Sets whether DKIM signing is enabled for an identity. Set to true to enable DKIM signing for this identity; false to disable it.",
+          "required": true
+        },
+        {
+          "name": "identity",
+          "type": "String",
+          "info": "The identity for which DKIM signing should be enabled or disabled.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "setIdentityFeedbackForwardingEnabled",
+      "description": "Given an identity (an email address or a domain), enables or disables whether Amazon SES forwards bounce and complaint notifications as email. Feedback forwarding can only be disabled when Amazon Simple Notification Service (Amazon SNS) topics are specified for both bounces and complaints.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "forwardingEnabled",
+          "type": "String",
+          "info": "Sets whether DKIM signing is enabled for an identity. Set to true to enable DKIM signing for this identity; false to disable it.",
+          "required": true
+        },
+        {
+          "name": "identity",
+          "type": "String",
+          "info": "The identity for which to set bounce and complaint notification forwarding. Examples: user@example.com, example.com.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "setIdentityHeadersInNotificationsEnabled",
+      "description": "Given an identity (an email address or a domain), sets whether Amazon SES includes the original email headers in the Amazon Simple Notification Service (Amazon SNS) notifications of a specified type.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "enabled",
+          "type": "String",
+          "info": "Sets whether Amazon SES includes the original email headers in Amazon SNS notifications of the specified notification type. A value of true specifies that Amazon SES will include headers in notifications, and a value of false specifies that Amazon SES will not include headers in notifications.",
+          "required": true
+        },
+        {
+          "name": "identity",
+          "type": "String",
+          "info": "The identity for which to enable or disable headers in notifications. Examples: user@example.com, example.com.",
+          "required": true
+        },
+        {
+          "name": "notificationType",
+          "type": "String",
+          "info": "The notification type for which to enable or disable headers in notifications. Valid Values: Bounce; Complaint; Delivery",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "setIdentityMailFromDomain",
+      "description": "Enables or disables the custom MAIL FROM domain setup for a verified identity (an email address or a domain).",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "identity",
+          "type": "String",
+          "info": "The verified identity for which you want to enable or disable the specified custom MAIL FROM domain.",
+          "required": true
+        },
+        {
+          "name": "BehaviorOnMXFailure",
+          "type": "String",
+          "info": "The action that you want Amazon SES to take if it cannot successfully read the required MX record when you send an email. If you choose UseDefaultValue, Amazon SES will use amazonses.com (or a subdomain of that) as the MAIL FROM domain. If you choose RejectMessage, Amazon SES will return a MailFromDomainNotVerified error and not send the email. Valid Values: UseDefaultValue; RejectMessage.",
+          "required": false
+        },
+        {
+          "name": "MailFromDomain",
+          "type": "String",
+          "info": "The custom MAIL FROM domain that you want the verified identity to use. The MAIL FROM domain must 1) be a subdomain of the verified identity, 2) not be used in a \"From\" address if the MAIL FROM domain is the destination of email feedback forwarding (for more information, see the Amazon SES Developer Guide), and 3) not be used to receive emails. A value of null disables the custom MAIL FROM setting for the identity.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "setIdentityNotificationTopic",
+      "description": "Given an identity (an email address or a domain), sets the Amazon Simple Notification Service (Amazon SNS) topic to which Amazon SES will publish bounce, complaint, and/or delivery notifications for emails sent with that identity as the Source.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "identity",
+          "type": "String",
+          "info": "The identity for which the Amazon SNS topic will be set. You can specify an identity by using its name or by using its Amazon Resource Name (ARN). Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.",
+          "required": true
+        },
+        {
+          "name": "notificationType",
+          "type": "String",
+          "info": "The type of notifications that will be published to the specified Amazon SNS topic. Valid Values: Bounce; Complaint; Delivery",
+          "required": true
+        },
+        {
+          "name": "snsTopic",
+          "type": "String",
+          "info": "The Amazon Resource Name (ARN) of the Amazon SNS topic. If the parameter is omitted from the request or a null value is passed, SnsTopic is cleared and publishing is disabled.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "setReceiptRulePosition",
+      "description": "Sets the position of the specified receipt rule in the receipt rule set.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "ruleName",
+          "type": "String",
+          "info": "The name of the receipt rule to reposition.",
+          "required": true
+        },
+        {
+          "name": "ruleSetName",
+          "type": "String",
+          "info": "The name of the receipt rule set that contains the receipt rule to reposition.",
+          "required": true
+        },
+        {
+          "name": "After",
+          "type": "String",
+          "info": "The name of the receipt rule after which to place the specified receipt rule.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateConfigurationSetEventDestination",
+      "description": "Updates the event destination of a configuration set.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "configurationSetName",
+          "type": "String",
+          "info": "The name of the configuration set that you want to update.",
+          "required": true
+        },
+        {
+          "name": "eventDestination",
+          "type": "JSON",
+          "info": "The event destination object that you want to apply to the specified configuration set. See README for more details.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateReceiptRule",
+      "description": "Updates a receipt rule.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "rule",
+          "type": "JSON",
+          "info": "A data structure that contains the updated receipt rule information. See README for more details.",
+          "required": true
+        },
+        {
+          "name": "ruleSetName",
+          "type": "String",
+          "info": "The name of the receipt rule set to which the receipt rule belongs.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "verifyDomainDkim",
+      "description": "Returns a set of DKIM tokens for a domain. DKIM tokens are character strings that represent your domain's identity. Using these tokens, you will need to create DNS CNAME records that point to DKIM public keys hosted by Amazon SES. Amazon Web Services will eventually detect that you have updated your DNS records; this detection process may take up to 72 hours. Upon successful detection, Amazon SES will be able to DKIM-sign email originating from that domain.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "The name of the domain to be verified for Easy DKIM signing.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "verifyDomainIdentity",
+      "description": "Verifies a domain.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "The domain to be verified.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "verifyEmailIdentity",
+      "description": "Verifies an email address. This action causes a confirmation email message to be sent to the specified address.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "emailAddress",
+          "type": "String",
+          "info": "The email address to be verified.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteReceiptRule",
+      "description": "Deletes the specified receipt rule.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "ruleName",
+          "type": "String",
+          "info": "The name of the receipt rule to delete.",
+          "required": true
+        },
+        {
+          "name": "ruleSetName",
+          "type": "String",
+          "info": "The name of the receipt rule set that contains the receipt rule to delete.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteReceiptRuleSet",
+      "description": "Deletes the specified receipt rule set and all of the receipt rules it contains.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "ruleSetName",
+          "type": "String",
+          "info": "The name of the receipt rule set to delete.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteReceiptFilter",
+      "description": "Deletes the specified IP address filter.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "filterName",
+          "type": "String",
+          "info": "The name of the IP address filter to delete.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteIdentityPolicy",
+      "description": "Deletes the specified sending authorization policy for the given identity (an email address or a domain). This API returns successfully even if a policy with the specified name does not exist.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "identity",
+          "type": "String",
+          "info": "The identity that is associated with the policy that you want to delete. You can specify the identity by using its name or by using its Amazon Resource Name (ARN). Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.",
+          "required": true
+        },
+        {
+          "name": "policyName",
+          "type": "String",
+          "info": "The name of the policy to be deleted.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteIdentity",
+      "description": "Deletes the specified identity (an email address or a domain) from the list of verified identities.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "identity",
+          "type": "String",
+          "info": "The identity to be removed from the list of identities for the AWS Account.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteConfigurationSetEventDestination",
+      "description": "Deletes a configuration set event destination.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "configurationSetName",
+          "type": "String",
+          "info": "The name of the configuration set from which to delete the event destination.",
+          "required": true
+        },
+        {
+          "name": "eventDestinationName",
+          "type": "String",
+          "info": "The name of the event destination to delete.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteConfigurationSet",
+      "description": "Deletes a configuration set..",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region.",
+          "required": true
+        },
+        {
+          "name": "configurationSetName",
+          "type": "String",
+          "info": "The name of the configuration set from which to delete the event destination.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    }
+  ]
+}
