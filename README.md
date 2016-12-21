@@ -38,10 +38,7 @@ Creates a configuration set event destination. An event destination is the AWS s
 
 #### matchingEventTypes format
 ```json
-
-{
-    ["send"]
-}
+["send"]
 ```
 #### cloudWatchDestination format
 ```json
