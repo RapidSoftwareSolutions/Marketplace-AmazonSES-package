@@ -1175,7 +1175,7 @@
       ]
     },
     {
-      "name": "sendMail",
+      "name": "sendEmail",
       "description": "Composes an email message based on input data, and then immediately queues the message for sending.",
       "args": [
         {
@@ -1263,7 +1263,7 @@
       ]
     },
     {
-      "name": "sendPlainMail",
+      "name": "sendPlainEmail",
       "description": "Composes an email plain message based on input data, and then immediately queues the message for sending.",
       "args": [
         {

@@ -417,7 +417,7 @@ Generates and sends a bounce message to the sender of an email you received thro
   ]
 }
 ```
-## AmazonSES.sendMail
+## AmazonSES.sendEmail
 Composes an email message based on input data, and then immediately queues the message for sending.
 
 | Field               | Type       | Description
@@ -476,7 +476,7 @@ Composes an email message based on input data, and then immediately queues the m
   ...
 ]
 ```
-## AmazonSES.sendPlainMail
+## AmazonSES.sendPlainEmail
 Composes an email plain message based on input data, and then immediately queues the message for sending.
 
 | Field    | Type       | Description
