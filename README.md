@@ -489,7 +489,7 @@ Composes an email plain message based on input data, and then immediately queues
 | message  | String     | The message of the email.
 | fromEmail| String     | The email address that is sending the email. This email address must be either individually verified with Amazon SES, or from a domain that has been verified with Amazon SES.
 
-## AmazonSES.sendRawMail
+## AmazonSES.sendRawEmail
 Sends an email message, with header and content specified by the client. The SendRawEmail action is useful for sending multipart MIME emails. The raw text of the message must comply with Internet email standards; otherwise, the message cannot be sent.
 
 | Field               | Type       | Description
