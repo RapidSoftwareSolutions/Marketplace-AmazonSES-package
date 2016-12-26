@@ -19,7 +19,7 @@ $app->post('/api/AmazonSES/reorderReceiptRuleSet', function ($request, $response
     ]);
     
     $body['RuleNames'] = $post_data['args']['ruleNames'];
-    $body['RuleSetName'] = json_encode($post_data['args']['ruleSetName']);
+    $body['RuleSetName'] = $post_data['args']['ruleSetName'];
     
     try {
         $res = $client->reorderReceiptRuleSet($body)->toArray();
