@@ -22,17 +22,13 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
         php7-dom \
         php7-fpm \
         php7-gd \
-        php7-iconv \
         php7-intl \
         php7-json \
         php7-mbstring \
         php7-mcrypt \
         php7-openssl \
-        php7-pdo \
-        php7-pdo_pgsql \
         php7-phar \
         php7-session \
-        php7-xdebug \
         php7-xml \
         php7-zip \
     && rm -rf /var/cache/apk/* \
