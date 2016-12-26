@@ -22,6 +22,7 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
         php7-dom \
         php7-fpm \
         php7-gd \
+        php7-iconv \
         php7-intl \
         php7-json \
         php7-mbstring \
