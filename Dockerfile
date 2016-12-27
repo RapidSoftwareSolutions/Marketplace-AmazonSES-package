@@ -10,7 +10,7 @@ COPY /conf/run.sh /usr/local/bin/run.sh
 # Bundle app source 
 COPY . .
 
-RUN echo "http://dl-4.alpinelinux.org/alpine/v3.4/main" >> /etc/apk/repositories && \
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     apk --update add \
         curl \
         git \
