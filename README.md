@@ -1,3 +1,5 @@
+[![](https://scdn.rapidapi.com/RapidAPI_banner.png)](https://rapidapi.com/package/AmazonSES/functions?utm_source=RapidAPIGitHub_AmazonSESFunctions&utm_medium=button&utm_content=RapidAPI_GitHub)
+
 # AmazonSES Package
 Amazon SES is an email platform that provides an easy, cost-effective way for you to send and receive email using your own email addresses and domains.
 * Domain: amazon.com
