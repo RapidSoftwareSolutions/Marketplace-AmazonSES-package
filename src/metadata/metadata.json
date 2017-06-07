@@ -94,9 +94,14 @@
         },
         {
           "name": "matchingEventTypes",
-          "type": "JSON",
+          "type": "List",
           "info": "Array of strings. The type of email sending events to publish to the event destination. Valid Values: send; reject; bounce; complaint; delivery",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "matchingEventType",
+            "type": "String",
+            "info": "Single matchingEventType"
+          }
         },
         {
           "name": "enabled",
@@ -338,9 +343,14 @@
         },
         {
           "name": "recipients",
-          "type": "JSON",
+          "type": "List",
           "info": "Array of strings. The recipient domains and email addresses to which the receipt rule applies. If this field is not specified, this rule will match all recipients under all verified domains.",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "recipient",
+            "type": "String",
+            "info": "Single recipient"
+          }
         }
       ],
       "callbacks": [
@@ -418,9 +428,14 @@
         },
         {
           "name": "attributeNames",
-          "type": "JSON",
-          "info": "Array os strings. A list of configuration set attributes to return. Valid Values: eventDestinations",
-          "required": false
+          "type": "List",
+          "info": "Array of strings. A list of configuration set attributes to return. Valid Values: eventDestinations",
+          "required": false,
+          "structure": {
+            "name": "attributeName",
+            "type": "String",
+            "info": "Single attributeName"
+          }
         }
       ],
       "callbacks": [
@@ -544,9 +559,14 @@
         },
         {
           "name": "identities",
-          "type": "JSON",
+          "type": "List",
           "info": "Array of strings. A list of one or more verified identities - email addresses, domains, or both.",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "identity",
+            "type": "String",
+            "info": "Single identity"
+          }
         }
       ],
       "callbacks": [
@@ -584,9 +604,14 @@
         },
         {
           "name": "identities",
-          "type": "JSON",
+          "type": "List",
           "info": "Array of strings. A list of one or more identities.",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "identity",
+            "type": "String",
+            "info": "Single identity"
+          }
         }
       ],
       "callbacks": [
@@ -624,9 +649,14 @@
         },
         {
           "name": "identities",
-          "type": "JSON",
+          "type": "List",
           "info": "Array of strings. A list of one or more identities. You can specify an identity by using its name or by using its Amazon Resource Name (ARN). Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "identity",
+            "type": "String",
+            "info": "Single identity"
+          }
         }
       ],
       "callbacks": [
@@ -670,9 +700,14 @@
         },
         {
           "name": "policyNames",
-          "type": "JSON",
+          "type": "List",
           "info": "Array of strings. A list of the names of policies to be retrieved. You can retrieve a maximum of 20 policies at a time. If you do not know the names of the policies that are attached to the identity, you can use ListIdentityPolicies.",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "policyName",
+            "type": "String",
+            "info": "Single policyName"
+          }
         }
       ],
       "callbacks": [
@@ -710,9 +745,14 @@
         },
         {
           "name": "identities",
-          "type": "JSON",
+          "type": "List",
           "info": "Array of strings. A list of identities. For more details see README.",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "identity",
+            "type": "String",
+            "info": "Single identity"
+          }
         }
       ],
       "callbacks": [
@@ -864,7 +904,8 @@
         },
         {
           "name": "identityType",
-          "type": "String",
+          "type": "Select",
+          "options": ["EmailAddress", "Domain"],
           "info": "The type of the identities to list. Possible values are \"EmailAddress\" and \"Domain\". If this parameter is omitted, then all identities will be listed. Valid Values: EmailAddress; Domain",
           "required": false
         },
@@ -1082,9 +1123,14 @@
         },
         {
           "name": "ruleNames",
-          "type": "JSON",
+          "type": "List",
           "info": "Array of strings. A list of the specified receipt rule set's receipt rules in the order that you want to put them. See README for more details.",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "ruleName",
+            "type": "String",
+            "info": "Single ruleName"
+          }
         },
         {
           "name": "ruleSetName",
@@ -1140,9 +1186,14 @@
         },
         {
           "name": "bouncedRecipientInfoList",
-          "type": "JSON",
+          "type": "List",
           "info": "A list of recipients of the bounced message, including the information required to create the Delivery Status Notifications (DSNs) for the recipients. You must specify at least one BouncedRecipientInfo in the list. See README for more details.",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "bouncedRecipientInfo",
+            "type": "JSON",
+            "info": "Single bouncedRecipientInfo"
+          }
         },
         {
           "name": "bounceSenderArn",
@@ -1222,9 +1273,14 @@
         },
         {
           "name": "replyToAddresses",
-          "type": "JSON",
+          "type": "List",
           "info": "Array of strings. The reply-to email address(es) for the message. If the recipient replies to the message, each reply-to address will receive the reply. See README for more details.",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "replyToAddress",
+            "type": "JSON",
+            "info": "Single replyToAddress"
+          }
         },
         {
           "name": "returnPath",
@@ -1246,9 +1302,14 @@
         },
         {
           "name": "tags",
-          "type": "JSON",
+          "type": "List",
           "info": "A list of tags, in the form of name/value pairs, to apply to an email that you send using SendEmail. Tags correspond to characteristics of the email that you define, so that you can publish email sending events. See README for more details.",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "tag",
+            "type": "JSON",
+            "info": "Single tag"
+          }
         }
       ],
       "callbacks": [
@@ -1356,9 +1417,14 @@
         },
         {
           "name": "destinations",
-          "type": "JSON",
+          "type": "List",
           "info": "A list of destinations for the message, consisting of To:, CC:, and BCC: addresses. See README for more details.",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "destination",
+            "type": "String",
+            "info": "Single destination"
+          }
         },
         {
           "name": "fromArn",
@@ -1386,9 +1452,14 @@
         },
         {
           "name": "tags",
-          "type": "JSON",
+          "type": "List",
           "info": "A list of tags, in the form of name/value pairs, to apply to an email that you send using SendRawEmail. Tags correspond to characteristics of the email that you define, so that you can publish email sending events. See README for more details.",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "tag",
+            "type": "JSON",
+            "info": "Single tag"
+          }
         }
       ],
       "callbacks": [

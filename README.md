@@ -2,7 +2,7 @@
 
 # AmazonSES Package
 Amazon SES is an email platform that provides an easy, cost-effective way for you to send and receive email using your own email addresses and domains.
-* Domain: amazon.com
+* Domain: [AmazonSES](http://amazon.com)
 * Credentials: apiKey, apiSecret
 
 ## How to get credentials: 
@@ -11,7 +11,17 @@ Amazon SES is an email platform that provides an easy, cost-effective way for yo
 2. Create new group in Groups section at the left side with necessary polices
 3. Create new user and assign to existing group
 4. After creating user you will see credentials
+
+## Custom datatypes: 
+ |Datatype|Description|Example
+ |--------|-----------|----------
+ |Datepicker|String which includes date and time|```2016-05-28 00:00:00```
+ |Map|String which includes latitude and longitude coma separated|```50.37, 26.56```
+ |List|Simple array|```["123", "sample"]``` 
+ |Select|String with predefined values|```sample```
+ |Array|Array of objects|```[{"Second name":"123","Age":"12","Photo":"sdf","Draft":"sdfsdf"},{"name":"adi","Second name":"bla","Age":"4","Photo":"asfserwe","Draft":"sdfsdf"}] ```
  
+
 ## AmazonSES.createConfigurationSet
 Creates a configuration set.
 
@@ -32,7 +42,7 @@ Creates a configuration set event destination. An event destination is the AWS s
 | region               | String     | Region.
 | configurationName    | String     | The name of the configuration set to which to apply the event destination.
 | destinationName      | String     | The name of the event destination. The name must: Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_), or dashes (-). Contain less than 64 characters.
-| matchingEventTypes   | JSON       | Array of strings. The type of email sending events to publish to the event destination. Valid Values: send; reject; bounce; complaint; delivery
+| matchingEventTypes   | List       | Array of strings. The type of email sending events to publish to the event destination. Valid Values: send; reject; bounce; complaint; delivery
 | enabled              | String     | Sets whether Amazon SES publishes events to this destination when you send an email with the associated configuration set. Set to true to enable publishing to this destination; set to false to prevent publishing to this destination. The default value is false.
 | cloudWatchDestination| JSON       | An object that contains the names, default values, and sources of the dimensions associated with an Amazon CloudWatch event destination. See README for more details.
 | deliveryStreamARN    | String     | The ARN of the Amazon Kinesis Firehose stream to which to publish email sending events.
@@ -56,6 +66,7 @@ Creates a configuration set event destination. An event destination is the AWS s
     ]
 }
 ```
+
 ## AmazonSES.createReceiptFilter
 Creates a new IP address filter.
 
@@ -104,7 +115,7 @@ Creates a receipt rule.
 | enabled    | String     | If true, the receipt rule is active. The default value is false.
 | scanEnabled| String     | If true, then messages to which this receipt rule applies are scanned for spam and viruses. The default value is false.
 | tlsPolicy  | String     | Specifies whether Amazon SES should require that incoming email is delivered over a connection encrypted with Transport Layer Security (TLS). If this parameter is set to Require, Amazon SES will bounce emails that are not received over TLS. The default is Optional. Valid Values: Require; Optional
-| recipients | JSON       | Array of strings. The recipient domains and email addresses to which the receipt rule applies. If this field is not specified, this rule will match all recipients under all verified domains.
+| recipients | List       | Array of strings. The recipient domains and email addresses to which the receipt rule applies. If this field is not specified, this rule will match all recipients under all verified domains.
 
 #### actions format
 ```json
@@ -152,6 +163,7 @@ Creates a receipt rule.
 ```json
 ["string", ...]
 ```
+
 ## AmazonSES.describeActiveReceiptRuleSet
 Returns the metadata and receipt rules for the receipt rule set that is currently active.
 
@@ -170,12 +182,8 @@ Returns the details of the specified configuration set.
 | apiSecret           | credentials| API secret obtained from Amazon.
 | region              | String     | Region.
 | configurationSetName| String     | The name of the configuration set to describe.
-| attributeNames      | JSON       | Array os strings. A list of configuration set attributes to return. Valid Values: eventDestinations
+| attributeNames      | List       | Array of strings. A list of configuration set attributes to return. Valid Values: eventDestinations
 
-#### attributeNames format
-```json
-["eventDestinations"]
-```
 ## AmazonSES.describeReceiptRule
 Returns the details of the specified receipt rule.
 
@@ -205,12 +213,8 @@ Returns the current status of Easy DKIM signing for an entity. For domain name i
 | apiKey    | credentials| API key obtained from Amazon.
 | apiSecret | credentials| API secret obtained from Amazon.
 | region    | String     | Region.
-| identities| JSON       | Array of strings. A list of one or more verified identities - email addresses, domains, or both.
+| identities| List       | Array of strings. A list of one or more verified identities - email addresses, domains, or both.
 
-#### identities format
-```json
-["test@test.com"]
-```
 ## AmazonSES.getIdentityMailFromDomainAttributes
 Returns the custom MAIL FROM attributes for a list of identities (email addresses and/or domains).
 
@@ -219,12 +223,8 @@ Returns the custom MAIL FROM attributes for a list of identities (email addresse
 | apiKey    | credentials| API key obtained from Amazon.
 | apiSecret | credentials| API secret obtained from Amazon.
 | region    | String     | Region.
-| identities| JSON       | Array of strings. A list of one or more identities.
+| identities| List       | Array of strings. A list of one or more identities.
 
-#### identities format
-```json
-["test@test.com"]
-```
 ## AmazonSES.getIdentityNotificationAttributes
 Given a list of verified identities (email addresses and/or domains), returns a structure describing identity notification attributes.
 
@@ -233,12 +233,8 @@ Given a list of verified identities (email addresses and/or domains), returns a 
 | apiKey    | credentials| API key obtained from Amazon.
 | apiSecret | credentials| API secret obtained from Amazon.
 | region    | String     | Region.
-| identities| JSON       | Array of strings. A list of one or more identities. You can specify an identity by using its name or by using its Amazon Resource Name (ARN). Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
+| identities| List       | Array of strings. A list of one or more identities. You can specify an identity by using its name or by using its Amazon Resource Name (ARN). Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
 
-#### identities format
-```json
-["test@test.com"]
-```
 ## AmazonSES.getIdentityPolicies
 Returns the requested sending authorization policies for the given identity (an email address or a domain). The policies are returned as a map of policy names to policy contents. You can retrieve a maximum of 20 policies at a time.
 
@@ -248,12 +244,8 @@ Returns the requested sending authorization policies for the given identity (an 
 | apiSecret  | credentials| API secret obtained from Amazon.
 | region     | String     | Region.
 | identity   | String     | The identity for which the policies will be retrieved. You can specify an identity by using its name or by using its Amazon Resource Name (ARN). Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
-| policyNames| JSON       | Array of strings. A list of the names of policies to be retrieved. You can retrieve a maximum of 20 policies at a time. If you do not know the names of the policies that are attached to the identity, you can use ListIdentityPolicies.
+| policyNames| List       | Array of strings. A list of the names of policies to be retrieved. You can retrieve a maximum of 20 policies at a time. If you do not know the names of the policies that are attached to the identity, you can use ListIdentityPolicies.
 
-#### policyNames format
-```json
-["ListIdentityPolicies"]
-```
 ## AmazonSES.getIdentityVerificationAttributes
 Given a list of identities (email addresses and/or domains), returns the verification status and (for domain identities) the verification token for each identity.
 
@@ -262,12 +254,8 @@ Given a list of identities (email addresses and/or domains), returns the verific
 | apiKey    | credentials| API key obtained from Amazon.
 | apiSecret | credentials| API secret obtained from Amazon.
 | region    | String     | Region.
-| identities| JSON       | Array of strings. A list of identities. For more details see README.
+| identities| List       | Array of strings. A list of identities. For more details see README.
 
-#### identities format
-```json
-["test@test.com"]
-```
 ## AmazonSES.getSendQuota
 Returns the user's current sending limits.
 
@@ -305,7 +293,7 @@ Returns a list containing all of the identities (email addresses and domains) fo
 | apiKey      | credentials| API key obtained from Amazon.
 | apiSecret   | credentials| API secret obtained from Amazon.
 | region      | String     | Region.
-| identityType| String     | The type of the identities to list. Possible values are "EmailAddress" and "Domain". If this parameter is omitted, then all identities will be listed. Valid Values: EmailAddress; Domain
+| identityType| Select     | The type of the identities to list. Possible values are "EmailAddress" and "Domain". If this parameter is omitted, then all identities will be listed. Valid Values: EmailAddress; Domain
 | maxItems    | String     | The number of configuration sets to return.
 | nextToken   | String     | A token returned from a previous call to ListConfigurationSets to indicate the position of the configuration set in the configuration set list.
 
@@ -375,13 +363,9 @@ Reorders the receipt rules within a receipt rule set.
 | apiKey     | credentials| API key obtained from Amazon.
 | apiSecret  | credentials| API secret obtained from Amazon.
 | region     | String     | Region.
-| ruleNames  | JSON       | Array of strings. A list of the specified receipt rule set's receipt rules in the order that you want to put them. See README for more details.
+| ruleNames  | List       | Array of strings. A list of the specified receipt rule set's receipt rules in the order that you want to put them. See README for more details.
 | ruleSetName| String     | The name of the receipt rule set to reorder.
 
-#### ruleNames format
-```json
-["RuleName"]
-```
 ## AmazonSES.sendBounce
 Generates and sends a bounce message to the sender of an email you received through Amazon SES. You can only use this API on an email up to 24 hours after you receive it.
 
@@ -392,7 +376,7 @@ Generates and sends a bounce message to the sender of an email you received thro
 | region                  | String     | Region.
 | bounceSender            | String     | The address to use in the "From" header of the bounce message. This must be an identity that you have verified with Amazon SES.
 | originalMessageId       | String     | The message ID of the message to be bounced.
-| bouncedRecipientInfoList| JSON       | A list of recipients of the bounced message, including the information required to create the Delivery Status Notifications (DSNs) for the recipients. You must specify at least one BouncedRecipientInfo in the list. See README for more details.
+| bouncedRecipientInfoList| List       | A list of recipients of the bounced message, including the information required to create the Delivery Status Notifications (DSNs) for the recipients. You must specify at least one BouncedRecipientInfo in the list. See README for more details.
 | bounceSenderArn         | String     | This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to use the address in the "From" header of the bounce. 
 | explanation             | String     | Human-readable text for the bounce message to explain the failure. If not specified, the text will be auto-generated based on the bounced recipient information.
 | messageDsn              | JSON       | Message-related DSN fields. If not specified, Amazon SES will choose the values. See README for more details.
@@ -419,6 +403,7 @@ Generates and sends a bounce message to the sender of an email you received thro
   ]
 }
 ```
+
 ## AmazonSES.sendEmail
 Composes an email message based on input data, and then immediately queues the message for sending.
 
@@ -431,13 +416,12 @@ Composes an email message based on input data, and then immediately queues the m
 | message             | JSON       | The message to be sent. See README for more details.
 | fromEmail           | String     | The email address that is sending the email. This email address must be either individually verified with Amazon SES, or from a domain that has been verified with Amazon SES.
 | configurationSetName| String     | The name of the configuration set to use when you send an email using SendEmail.
-| replyToAddresses    | JSON       | Array of strings. The reply-to email address(es) for the message. If the recipient replies to the message, each reply-to address will receive the reply. See README for more details.
+| replyToAddresses    | List       | Array of strings. The reply-to email address(es) for the message. If the recipient replies to the message, each reply-to address will receive the reply. See README for more details.
 | returnPath          | String     | The email address to which bounces and complaints are to be forwarded when feedback forwarding is enabled.
 | returnPathArn       | String     | This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to use the email address specified in the ReturnPath parameter.
 | sourceArn           | String     | This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to send for the email address specified in the Source parameter. For example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com) attaches a policy to it that authorizes you to send from user@example.com, then you would specify the SourceArn to be arn:aws:ses:us-east-1:123456789012:identity/example.com, and the Source to be user@example.com.
-| tags                | JSON       | A list of tags, in the form of name/value pairs, to apply to an email that you send using SendEmail. Tags correspond to characteristics of the email that you define, so that you can publish email sending events. See README for more details.
+| tags                | List       | A list of tags, in the form of name/value pairs, to apply to an email that you send using SendEmail. Tags correspond to characteristics of the email that you define, so that you can publish email sending events. See README for more details.
 
-#### destination format
 ```json
 {
   "ToAddresses": ["string", ...],
@@ -478,6 +462,7 @@ Composes an email message based on input data, and then immediately queues the m
   ...
 ]
 ```
+
 ## AmazonSES.sendPlainEmail
 Composes an email plain message based on input data, and then immediately queues the message for sending.
 
@@ -501,12 +486,13 @@ Sends an email message, with header and content specified by the client. The Sen
 | region              | String     | Region.
 | rawMessage          | JSON       | The raw text of the message. See README for more details.
 | configurationSetName| String     | The name of the configuration set to use when you send an email using SendRawEmail.
-| destinations        | JSON       | A list of destinations for the message, consisting of To:, CC:, and BCC: addresses. See README for more details.
+| destinations        | List       | A list of destinations for the message, consisting of To:, CC:, and BCC: addresses. See README for more details.
 | fromArn             | String     | This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to specify a particular "From" address in the header of the raw email.
 | returnPathArn       | String     | This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to use the email address specified in the ReturnPath parameter. For example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com) attaches a policy to it that authorizes you to use feedback@example.com, then you would specify the ReturnPathArn to be arn:aws:ses:us-east-1:123456789012:identity/example.com, and the ReturnPath to be feedback@example.com.
 | source              | String     | The identity's email address. If you do not provide a value for this parameter, you must specify a "From" address in the raw text of the message. (You can also specify both.)
 | sourceArn           | String     | This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to send for the email address specified in the Source parameter. For example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com) attaches a policy to it that authorizes you to send from user@example.com, then you would specify the SourceArn to be arn:aws:ses:us-east-1:123456789012:identity/example.com, and the Source to be user@example.com.
-| tags                | JSON       | A list of tags, in the form of name/value pairs, to apply to an email that you send using SendRawEmail. Tags correspond to characteristics of the email that you define, so that you can publish email sending events. See README for more details.
+| tags                | List       | A list of tags, in the form of name/value pairs, to apply to an email that you send using SendRawEmail. Tags correspond to characteristics of the email that you define, so that you can publish email sending events. See README for more details.
+
 #### rawMessage format
 ```json
 {
@@ -695,6 +681,7 @@ Updates a receipt rule.
   "ScanEnabled": true|false
 }
 ```
+
 ## AmazonSES.verifyDomainDkim
 Returns a set of DKIM tokens for a domain. DKIM tokens are character strings that represent your domain's identity. Using these tokens, you will need to create DNS CNAME records that point to DKIM public keys hosted by Amazon SES. Amazon Web Services will eventually detect that you have updated your DNS records; this detection process may take up to 72 hours. Upon successful detection, Amazon SES will be able to DKIM-sign email originating from that domain.
 
